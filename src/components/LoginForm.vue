@@ -1,36 +1,37 @@
 <script setup lang="ts">
+import type { User } from '@/models/userModel'
 import { useUserStore } from '../stores/userStore'
 import { useRouter } from 'vue-router'
+import { reactive } from 'vue'
 
 const userStore = useUserStore()
 const router = useRouter()
 
-const handleSubmit = () => {
-  userStore.setUserData({
-    user: userStore.userData.user,
-    password: userStore.userData.password,
-    rememberMe: userStore.userData.rememberMe
-  })
-  router.push('/home') // Navega a la HomeView
-}
+const user: User = reactive<User>({
+  user: '',
+  password: '',
+  rememberMe: false
+})
 
-const userData = userStore.userData
+function onSubmit() {
+  userStore.setUserData(user), router.push('home')
+}
 </script>
 
 <template>
   <div class="wrapper">
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="onSubmit">
       <h1>Login</h1>
       <div class="input-bx">
-        <input v-model="userData.user" type="text" placeholder="Usuario" required />
+        <input v-model="user.user" type="text" placeholder="Usuario" required />
         <ion-icon class="icon" name="person-circle"></ion-icon>
       </div>
       <div class="input-bx">
-        <input v-model="userData.password" type="password" placeholder="Contraseña" required />
+        <input v-model="user.password" type="password" placeholder="Contraseña" required />
         <ion-icon class="icon" name="lock-closed"></ion-icon>
       </div>
       <div class="remember-forgot">
-        <label><input v-model="userData.rememberMe" type="checkbox" /> Recordarme</label>
+        <label><input v-model="user.rememberMe" type="checkbox" /> Recordarme</label>
       </div>
       <button type="submit" class="btn">Ingresar</button>
     </form>
