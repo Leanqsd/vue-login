@@ -1,14 +1,22 @@
 <script setup lang="ts">
 import { useUserStore } from '../stores/userStore'
+import { useAuthStore } from '@/stores/authStore'
 
 const userStore = useUserStore()
 const userData = userStore.userData
+
+const authStore = useAuthStore()
+
+function logout() {
+  authStore.logout()
+}
 </script>
 
 <template>
   <div class="wrapper">
     <h2>Bienvenido:</h2>
-    <h1>{{ userData.user }}</h1>
+    <h1>{{ userData.username }}</h1>
+    <button @click="logout">Logout</button>
   </div>
 </template>
 
