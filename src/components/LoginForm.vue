@@ -3,15 +3,17 @@
 //import type { User } from '@/models/UserModel'
 
 //importaciones locales
-import { useUserStore } from '../stores/userStore'
+
+//import { useUserStore } from '../stores/userStore'
 import { useAuthStore } from '@/stores/authStore'
 import { useRouter } from 'vue-router'
 
 //importaciones de librerias
+
 import { Form, Field } from 'vee-validate'
 import * as Yup from 'yup'
 
-const userStore = useUserStore()
+//const userStore = useUserStore()
 const authStore = useAuthStore()
 const router = useRouter()
 
@@ -23,11 +25,6 @@ const schema = Yup.object().shape({
 if (authStore.auth.data) {
   router.push('/')
 }
-//const user: User = reactive<User>({
-//  userName: '',
-//  password: '',
-//  rememberMe: false
-//})
 
 function handleSubmit(values: any, { setErrors }: any) {
   const { username, password } = values

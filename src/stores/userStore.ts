@@ -4,10 +4,12 @@ import type { User } from '../models/UserModel'
 export const useUserStore = defineStore('userStore', {
   state: () => ({
     userData: {
-      userName: '',
-      password: '',
-      rememberMe: false
-    } as User
+      id: 0,
+      firstName: '',
+      lastName: '',
+      username: '',
+      password: ''
+    }
   }),
   actions: {
     setUserData(newUserData: User) {

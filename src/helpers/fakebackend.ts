@@ -6,7 +6,7 @@ import type { AuthRequestBody } from '@/models/AuthReqModel'
 
 // Array de usuarios en localstorage
 const usersKey = 'vue-3-jwt-refresh-token-users'
-const users: User[] = JSON.parse(localStorage.getItem(usersKey) || '[]')
+export const users: User[] = JSON.parse(localStorage.getItem(usersKey) || '[]')
 
 // Agregar un usuario test en localstorage si no hay ninguno
 const user: User = {

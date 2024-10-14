@@ -10,6 +10,7 @@ export const useAuthStore = defineStore({
   state: () => ({
     auth: {} as { loading: boolean; data?: User | null; refreshTokenTimeout: number | null }
   }),
+
   actions: {
     async login(userName: string, password: string) {
       this.auth.data = await fetchWrapper.post(
@@ -23,7 +24,7 @@ export const useAuthStore = defineStore({
       fetchWrapper.post(`${baseUrl}/revoke-token`, {}, { credentials: 'include' })
       this.stopRefreshTokenTimer()
       this.auth.data = null
-      router.push({ name: '/login' })
+      router.push({ name: 'login' })
     },
     async refreshToken() {
       this.auth.data = await fetchWrapper.post(
