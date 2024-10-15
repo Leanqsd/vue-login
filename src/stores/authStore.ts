@@ -18,7 +18,6 @@ export const useAuthStore = defineStore({
         { userName, password },
         { credentials: 'include' }
       )
-      this.startRefreshTokenTimer()
     },
     logout() {
       fetchWrapper.post(`${baseUrl}/revoke-token`, {}, { credentials: 'include' })
